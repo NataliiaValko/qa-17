@@ -1,202 +1,146 @@
-// a
-// a[title="link"]
-// .submenu
-// #title
-// .social-links a
-// .social-links.link
-// <h1 class="title accent"></h1>
-{
-  /* <h2 class="title"></h2> */
-}
-// .title.accent
-// .title
-// .title:hover
+// ## Example 1 - Базові операції з масивом
 
-// const user = "Mango";
+// 1. Створіть масив `genres` з елементами "Jazz" та "Blues".
+// 2. Додайте "Rock-n-Roll" до кінця.
+// 3. Виведіть у консоль перший елемент масиву.
+// 4. Виведіть у консоль останній елемент масиву. Код повинен працювати для масиву   довільної довжини.
+// 5. Видаліть перший елемент та виведіть його в консоль.
+// 6. Вставте "Country" та "Reggae" на початок масиву.
 
-// let age = 5;
-// age = 20;
-// console.log("age:", age);
+// const genres = ["Jazz", "Blues"];
+// genres.push("Rock-n-Roll");
 
-// const quantity = age;
-// console.log("quantity:", quantity);
+// console.log("first element:", genres[0]);
+// const lastIndex = genres.length - 1;
+// console.log("last element:", genres[lastIndex]);
+// console.log("removed first element:", genres.shift());
+// console.log("added first element:", genres.unshift("Country", "Reggae"));
 
-// age = 50;
-// console.log("age:", age);
-// console.log("quantity:", quantity);
+// console.log("genres:", genres);
 
-// const valueB = "random string";
-// console.log(Number(valueB)); // NaN
-// console.log(typeof Number(valueB)); // "number"
-// isNaN(6);
-// console.log("isNaN(6):", isNaN(undefined));
+// ## Example 2 - Масиви та рядки
 
-// 5 <= 2;
-// console.log("5 === 2", 5 === 2);
+// Напиши функцію getRectArea(values) для обчислення площі прямокутника зі сторонами, значення
+// яких зберігаються у змінній `values` у вигляді рядка. Значення гарантовано
+// розділені пробілом.
 
-// Example 1 - Математичні оператори
-// Виведи на екран загальну кількість яблук та винограду. Різницю яблук та винограду.
+// const values = "11 11";
 
-// const apples = "47";
-// const grapes = 135;
-// const total = Number(apples) + Number(grapes);
-// console.log("total:", total);
-
-// const diff = grapes - apples;
-// console.log("diff:", diff);
-
-//
-// Example 2 - Комбіновані оператори
-// Заміни вираз перевизначення комбінованим оператором +=.
-
-// let students = 100;
-// // students = students + 50;
-// students += 50;
-// console.log("students:", students);
-
-//
-//
-// Example 3 - Пріоритет операторів
-// Розбери пріоритет операторів в інструкції привласнення значення змінної result.
-
-// const result = 108 + 223 - 2 * 5;
-// console.log(result);
-//
-//
-// Example 4 - Клас Math
-// Напиши скрипт, який виводить у консоль заокруглені вгору/вниз і т.д. значення змінної value. Використовуй методи Math.floor(), Math.ceil() та Math.round(). Перевір що буде в консолі при значеннях 27.3 та 27.9.
-
-// const value = 27.4;
-
-// console.log(Math.floor(value));
-// console.log(Math.ceil(value));
-// console.log(Math.round(value));
-
-// Example 5 - Шаблонні рядки
-// Склади фразу за допомогою шаблонних рядків A has B bots in stock, де A, B - змінні вставлені в рядок.
-
-// const companyName = "Cyberdyne Systems";
-// const repairBots = 150;
-// const defenceBots = 50;
-// const message = `${companyName} has ${repairBots + defenceBots} bots in stock`;
-// console.log(message); // "Cyberdyne Systems has 200 bots in stock"
-//
-//
-// Example 6 - Методи рядків та чейнінг
-// Напиши скрипт, який розраховує індекс маси тіла людини. Для цього необхідно розділити вагу в кілограмах на квадрат висоти людини у метрах.
-
-// Вага та висота зберігаються у змінних weight та height, але не як числа, а в вигляді рядків (спеціально для завдання). Не цілі числа можуть бути задані у вигляді 24.7 або 24,7, тобто як роздільник дробової частини може бути кома.
-
-// Індекс маси тіла необхідно округлити до однієї цифри після коми;
-
-// let weight = "88,3";
-// let height = "1.75";
-
-// const normalizeWeight = weight.replace(",", ".");
-// const normalizeHeight = height.replace(",", ".");
-
-// const bmi = (normalizeWeight / normalizeHeight ** 2).toFixed(1);
-// console.log(bmi); // 28.8
-
-//
-// Example 7 - Оператори порівняння та приведення типів
-// Яким буде результат виразів?
-
-// console.log(5 > 4);
-
-// console.log(10 >= "7");
-//
-// console.log("2" > "12");
-
-// console.log("2" < "12");
-
-// console.log("4" == 4);
-
-// console.log("6" === 6);
-
-// console.log("false" === false);
-
-// console.log(1 == true);
-
-// console.log(1 === true);
-
-// console.log("0" == false);
-
-// console.log("0" === false);
-
-// console.log("Papaya" < "papaya");
-
-// console.log("Papaya" === "papaya");
-
-// console.log(undefined == null);
-
-// console.log(undefined === null);
-//
-//
-// Example 8 - Логічні оператори
-// Яким буде результат виразів?
-
-// console.log(true && 3);
-
-// console.log(false && 3);
-
-// console.log(true && 4 && "kiwi");
-
-// console.log(true && 0 && "kiwi");
-
-// console.log(true || 3);
-
-// console.log(true || 3 || 4);
-
-// console.log(true || false || 7);
-
-// console.log(null || 2 || undefined);
-
-// console.log((1 && null && 2) > 0);
-
-// console.log(null || (2 && 3) || 4);
-//
-//
-// Example 9 - Значення за замовчуванням та оператор нульового злиття
-// Отрефактори код так, щоб у змінну value присвоювалося значення змінної incomingValue, якщо воно не рівне undefined або null. В іншому випадку має присвоюватися значення defaultValue. Перевір роботу скрипта для наступних значень змінної incomingValue: null, undefined, 0, false. Використовуй оператор ?? (nullish coalescing operator).
-
-// const incomingValue = 5;
-// const defaultValue = 10;
-// const value = incomingValue || defaultValue;
-// let value;
-
-// if (incomingValue === undefined || incomingValue === null) {
-//   value = defaultValue;
-// } else {
-//   value = incomingValue;
+// function getRectArea(values) {
+//   const array = values.split(" ");
+//   const area = array[0] * array[1];
+//   return area;
 // }
 
-// value =
-//   incomingValue === undefined || incomingValue === null
-//     ? defaultValue
-//     : incomingValue;
+// console.log(getRectArea(values));
+// ## Example 3 - Перебір масиву
 
-// value = incomingValue ?? defaultValue;
+// Напиши функцію logItems(items) для перебору масиву `fruits` циклом `for`. Для кожного елемента
+// масиву виведи в консоль рядок у форматі `номер_елемента: значення_елемента`.
+// Нумерація елементів повинна починатися з `1`.
 
-// console.log(value);
+// const fruits = ["🍎", "🍇", "🍑", "🍌", "🍋"];
+// const friends = ["Mango", "Poly", "Ajax"];
+
+// function logItems(items) {
+//   for (let index = 1; index <= items.length; index += 1) {
+//     console.log(`${index}: ${items[index - 1]}`);
+//   }
+// }
+
+// logItems(fruits);
+// logItems(friends);
+//варіант з ускладненням
 //
-//
-// Example 10 - Оператор % та методи рядків
-// Напиши скрипт, який переведе значення totalMinutes (кількість хвилин) в рядок у форматі годин та хвилин HH:MM.
+// const fruits = ["🍎", "🍇", "🍑", "🍌", "🍋"];
+// const friends = ["Mango", "Poly", "Ajax"];
 
-// 70 покаже 01:10
-// 450 покаже 07:30
-// 1441 покаже 24:01
-// const totalMinutes = 70;
+// function logItems(items) {
+//   let result = "";
 
-// const hours = Math.floor(totalMinutes / 60);
-// const minutes = totalMinutes % 60;
+//   for (let index = 1; index <= items.length; index += 1) {
+//     result = result.concat(`${index}: ${items[index - 1]} \n`);
+//   }
 
-// const normalizeHours = String(hours).padStart(2, 0);
-// const normalizeMinutes = String(minutes).padStart(2, 0);
+//   return result;
+// }
 
-// const message = normalizeHours + ":" + normalizeMinutes;
-// const message = normalizeHours.concat(":").concat(normalizeMinutes);
-// const message = `${normalizeHours}:${normalizeMinutes}`;
+// console.log(logItems(fruits));
+// logItems(friends);
 
-// console.log(message);
+// ## Example 4 - Масиви та цикли
+
+// Напиши функцію printContactsInfo(names, phones), яка виводить у консоль ім'я та телефонний номер користувача ( "name: <name>; phone: <phone>").
+//У змінних `names` та `phones` зберігаються рядки імен та телефонних номерів,
+// розділені комами. Порядковий номер імен та телефонів у рядках вказують на
+// відповідність. Кількість імен та телефонів гарантовано однакова.
+
+// const names = "Jacob,William,Solomon,Artemis";
+// const phones = "89001234567,89001112233,890055566377,890055566300";
+
+// function printContactsInfo(names, phones) {
+//   const arrayNames = names.split(",");
+//   const arrayPhones = phones.split(",");
+
+//   for (let index = 0; index < arrayPhones.length; index += 1) {
+//     console.log(`name: ${arrayNames[index]}; phone: ${arrayPhones[index]}`);
+//   }
+// }
+
+// printContactsInfo(names, phones);
+
+// ## Example 5 - Масиви та рядки
+
+// Напиши функцію transformArray(string), яка виводить у консоль усі слова рядка крім першого і
+// останнього. Результуючий рядок не повинен починатися або закінчуватися
+// символ пробілу. Скрипт повинен працювати для будь-якого рядка.
+
+// const string = "Welcome to a beautiful and happy future";
+
+// function transformArray(string) {
+//   const array = string.split(" ");
+
+//   array.shift();
+//   array.pop();
+
+//   const newString = array.join(" ");
+
+//   console.log(newString);
+// }
+
+// transformArray(string);
+
+// ## Example 6 - Масиви та рядки
+
+// Напиши скрипт, який «розгортає» рядок (зворотний порядок букв) і виводить
+// його в консоль.
+
+// const string = "Welcome to the future";
+
+// function reverseString(string) {
+//   const array = string.split("");
+//   const reversedArray = array.reverse();
+//   const newString = reversedArray.join("");
+
+//   console.log(newString);
+// }
+
+// reverseString(string);
+
+/// Example 7 - Колекція курсів (includes, indexOf, push і т. д.)
+// Напишіть функції для роботи з колекцією навчальних курсів courses:
+
+// addCourse(name) - додає курс до кінця колекції
+// removeCourse(name) - видаляє курс із колекції
+// updateCourse(oldName, newName) - змінює ім'я на нове
+
+// const courses = ["HTML", "CSS", "JavaScript", "React", "PostgreSQL"];
+
+// ## Example 8 - Пошук елемента
+
+// Напиши фунцію findSmallerNumber(numbers), яка  шукає найменше число у масиві. Код повинен працювати для
+// будь-якого масиву чисел. Використовуй цикл для розв'язання задачі.
+
+// const numbers = [2, 17, 94, 1, 23, 37];
+// let min;
+// console.log(min); // 1
