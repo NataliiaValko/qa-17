@@ -446,14 +446,76 @@ const Transaction = {
 //   account.getTransactionDetails(0.653129863770676)
 // );
 
-const friends = {};
-const parents = {};
+// const friends = {};
+// const parents = {};
 
-const user = {
-  name: "Mango",
-  age: 25,
-};
-user[friends] = friends;
-user[parents] = parents;
+// const user = {
+//   name: "Mango",
+//   age: 25,
+// };
+// user[friends] = friends;
+// user[parents] = parents;
 
-console.log(user);
+// console.log(user);
+
+/// Example 7 - Колекція курсів (includes, indexOf, push і т. д.)
+// Напишіть функції для роботи з колекцією навчальних курсів courses:
+
+// addCourse(name) - додає курс до кінця колекції
+// removeCourse(name) - видаляє курс із колекції
+// updateCourse(oldName, newName) - змінює ім'я на нове
+
+// const courses = ["HTML", "CSS", "JavaScript", "React", "PostgreSQL"];
+
+// function addCourse(name) {
+//   courses.push(name);
+// }
+// addCourse("QA");
+
+// function removeCourse(name) {
+//   const index = courses.indexOf(name);
+//   courses.splice(index, 1);
+// }
+// removeCourse("PostgreSQL");
+
+// function updateCourse(oldName, newName) {
+//   const index = courses.indexOf(oldName);
+//   courses.splice(index, 1, newName);
+// }
+// updateCourse("React", "Node");
+// console.log(courses);
+// ## Example 8 - Пошук елемента
+
+// Напиши фунцію findSmallerNumber(numbers), яка  шукає найменше число у масиві. Код повинен працювати для
+// будь-якого масиву чисел. Використовуй цикл для розв'язання задачі.
+
+// const numbers = [1, 17, 94, 11, 23, -2];
+
+// function findSmallerNumber(numbers) {
+//   let min = numbers[0];
+//   for (const number of numbers) {
+//     //через if else
+//     // if (number < min) {
+//     //   min = number;
+//     // }
+//     // через тернарний оператор
+//     min = number < min ? number : min;
+//   }
+//   console.log(min); // 1
+//   return min;
+// }
+
+// findSmallerNumber(numbers);
+
+// const numbers = [2, 17, 94, 1, 23, 37, 3, -9];
+// //console.log(min); // 1
+// function findSmallerNumber(numbers) {
+//   let min = numbers[0];
+//   for (const number of numbers) {
+//     //number < min ? min = number : null
+//     min = number < min ? number : min;
+//   }
+//   return min;
+// }
+
+// console.log(findSmallerNumber(numbers));
