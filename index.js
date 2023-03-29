@@ -1,521 +1,363 @@
-// ## Example 1 - Основи об'єктів
+// Example 1 - Коллбек функції
+// Напишіть наступні функції:
 
-// Напиши скрипт, який для об'єкта user, послідовно:
-
-// - додає поле 'mood' зі значенням 'happy'
-// - замінює значення властивості 'hobby' на 'skydiving'
-// - замінює значення властивості 'premium' на false
-// - виводить вміст об'єкта `user` у форматі `ключ:значення` використовуючи
-//   `Object.keys()` та `for...of`
-
-// const user = {
-//   name: "Mango",
-//   age: 20,
-//   hobby: "html",
-//   premium: true,
-// };
-
-// user.mood = "happy";
-// user.hobby = "skydiving";
-// user.premium = false;
-// const keys = Object.keys(user);
-
-// for (const key of keys) {
-//   console.log(`${key}: ${user[key]}`);
+// createProduct(obj, callback) - приймає об'єкт товару без id, а також коллбек. Функція створює об'єкт товару, додаючи йому унікальний ідентифікатор у властивість id та викликає коллбек передаючи йому створений об'єкт.
+// logProduct(product) - колббек приймаючий об'єкт продукту і логуючий його в консоль
+// logTotalPrice(product) - колббек, що приймає об'єкт продукту і логіює загальну вартість товару в консоль
+// function createProduct(obj, callback) {
+//   const product = { ...obj, id: Date.now() };
+//   callback(product);
 // }
 
-// console.log("user:", user);
-
-// ## Example 2 - метод Object.values()
-
-// У нас є об'єкт, де зберігаються зарплати нашої команди. Напишіть код для
-// підсумовування всіх зарплат і збережіть результат у змінній sum. Повинно
-// вийти 390. Якщо об'єкт `salaries` порожній, то результат має бути 0.
-
-// const salaries = {
-//   John: 100,
-//   Ann: 160,
-//   Pete: 130,
-// };
-
-// function getTotalSalary(object) {
-//   let total = 0;
-
-//   const values = Object.values(object);
-//   for (const value of values) {
-//     total += value;
-//   }
-
-//   return total;
+// function logProduct(product) {
+//   console.log(product);
 // }
 
-// console.log(getTotalSalary(salaries));
-
-// ## Example 3 - Масив об'єктів
-
-// Напишіть функцію calcTotalPrice(stones, stoneName), яка приймає масив
-// об'єктів та рядок з назвою каменю. Функція рахує і повертає загальну вартість
-// каміння з таким ім'ям, ціною та кількістю з об'єкта
-
-// const stones = [
-//   { name: "emerald", price: 1300, quantity: 4 },
-//   { name: "diamond", price: 2700, quantity: 3 },
-//   { name: "sapphire", price: 900, quantity: 7 },
-//   { name: "ruby", price: 800, quantity: 2 },
-//   { name: "sapphire", price: 1400, quantity: 2 },
-// ];
-
-// function calcTotalPrice(stones, stoneName) {
-//   let total = 0;
-//   for (const { name, price, quantity } of stones) {
-//     if (name === stoneName) {
-//       total += price * quantity;
-//     }
-//   }
-//   return total;
+// function logTotalPrice(product) {
+//   console.log(product.price * product.quantity);
 // }
+// createProduct({ name: "banana", price: 100, quantity: 15 }, logProduct);
+// createProduct({ name: "banana", price: 100, quantity: 15 }, logTotalPrice);
+// createProduct({ name: "cherry", price: 150, quantity: 2 }, logProduct);
+// createProduct({ name: "cherry", price: 150, quantity: 2 }, logTotalPrice);
 
-// console.log(calcTotalPrice(stones, "sapphire"));
+// Example 2 - Коллбек функції
+// Додайте об'єкт account методи withdraw(amount, onSuccess, onError) та deposit(amount, onSuccess, onError), де перший параметр це сума операції, а другий та третій - коллбеки.
 
-// ## Example 4 - Комплексні завдання
+// Метод withdraw викликає onError якщо amount більше TRANSACTION_LIMIT ("Amount should not exceed {TRANSACTION_LIMIT} credits") або this.balance ("Amount can't exceed account balance of {this.balance} credits"), і onSuccess ("Account balance: {this.balance}") та зміну баланса в іншому випадку.
 
-// Створи об'єкт calculator з трьома методами
-//read(a, b) - приймає два аргумента та зберігає їх як властивості об'єкта
-//sum() додає властивості об'єкта між собою і повертає результат
-//mult() множить властивості об'єкта між собою і повертає результат
-//
-//
-// const calculator = {
-//   read(a, b) {
-//     if (isNaN(a) || isNaN(b)) {
-//       console.log("Введіть, бдуь ласка, числа");
-//       return;
-//     }
-//     this.prop1 = Number(a);
-//     this.prop2 = Number(b);
-//   },
-//   sum() {
-//     if (!this.prop1 || !this.prop2) {
-//       return console.log("У нас немає даних для обчислення");
-//     }
-//     const result = this.prop1 + this.prop2;
-//     return result;
-//   },
-//   mult() {
-//     if (!this.prop1 || !this.prop2) {
-//       return console.log("У нас немає даних для обчислення");
-//     }
-//     const result = this.prop1 * this.prop2;
-//     return result;
-//   },
-// };
-// // console.log(Math.max(1, 2, "8"));
+// Метод deposit викликає onError якщо amount більше TRANSACTION_LIMIT ("Amount should not exceed {TRANSACTION_LIMIT} credits") або менше або дорівнює нулю ("Amount must be more than 0 credits"), і onSuccess ("Account balance: {this.balance}") та зміну баланса в іншому випадку.
 
-// console.log("calculator:", calculator);
-// calculator.read(4, "aaa9");
-// console.log("calculator.sum()", calculator.sum());
-// console.log("calculator.mult()", calculator.mult());
+// Рішення
+// const TRANSACTION_LIMIT = 1000;
 
-// ## Example 5 - Комплексні завдання
-
-// Напиши скрипт управління особистим кабінетом інтернет банку. Є об'єкт `account`
-// в якому необхідно реалізувати методи для роботи з балансом та історією
-// транзакцій.
-
-//   Типів транзакцій всього два.
-//   Можна покласти чи зняти гроші з рахунку.
-
-const Transaction = {
-  DEPOSIT: "deposit",
-  WITHDRAW: "withdraw",
-};
-
-// /*
-//  * Кожна транзакція це об'єкт із властивостями: id, type та amount
-//  */
-//1 variable
 // const account = {
-//   //   // Поточний баланс рахунку
-//   balance: 0,
-
-//   //   // Історія транзакцій
-//   transactions: [
-//     {
-//       amount: 150,
-//       type: "deposit",
-//       id: 0.7557249053527564,
-//     },
-//     {
-//       amount: 550,
-//       type: "deposit",
-//       id: 0.6208356631162801,
-//     },
-//     {
-//       amount: 550,
-//       type: "deposit",
-//       id: 0.37370657930144136,
-//     },
-//     {
-//       amount: 550,
-//       type: "deposit",
-//       id: 0.653129863770676,
-//     },
-//     {
-//       amount: -400,
-//       type: "withdraw",
-//       id: 0.9443966193853066,
-//     },
-//     {
-//       amount: -350,
-//       type: "withdraw",
-//       id: 0.09924677740566068,
-//     },
-//     {
-//       amount: -710,
-//       type: "withdraw",
-//       id: 0.3191312221336464,
-//     },
-//   ],
-
-//   //   /*
-//   //    * Метод створює та повертає об'єкт транзакції.
-//   //    * Приймає суму та тип транзакції.
-//   //    */
-//   createTransaction(amount, type) {
-//     const id = Math.random();
-//     const transaction = {
-//       amount,
-//       type,
-//       id,
-//     };
-//     return transaction;
-//   },
-
-//   //   /*
-//   //    * Метод, що відповідає за додавання суми до балансу.
-//   //    * Приймає суму транзакції.
-//   //    * Викликає createTransaction для створення об'єкта транзакції
-//   //    * після чого додає його до історії транзакцій
-//   //    */
-//   deposit(amount) {
-//     if (isNaN(amount)) {
-//       console.log("Введіть, будь ласка, число");
+//   username: "Jacob",
+//   balance: 400,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`${amount} should not exceed ${TRANSACTION_LIMIT} credits`);
 //       return;
 //     }
-
-//     const normalizeAmount = Number(amount);
-//     const type =
-//       normalizeAmount > 0 ? Transaction.DEPOSIT : Transaction.WITHDRAW;
-
-//     const transaction = this.createTransaction(normalizeAmount, type);
-//     this.transactions.push(transaction);
-//     this.balance += normalizeAmount;
-//   },
-
-//   //   /*
-//   //    * Метод, що відповідає за зняття суми з балансу.
-//   //    * Приймає суму транзакції.
-//   //    * Викликає createTransaction для створення об'єкта транзакції
-//   //    * після чого додає його до історії транзакцій.
-//   //    *
-//   //    * Якщо amount більше ніж поточний баланс, виводь повідомлення
-//   //    * про те, що зняття такої суми не можливе, недостатньо коштів.
-//   //    */
-//   withdraw(amount) {
-//     if (isNaN(amount)) {
-//       console.log("Введіть, будь ласка, число");
+//     if (amount > this.balance) {
+//       onError(
+//         `${amount} can't exceed account balance of ${this.balance} credits`
+//       );
 //       return;
 //     }
-//     const currentBalance = this.getBalance();
-
-//     if (currentBalance + Number(amount) < 0) {
-//       console.log("У вас недостатньо коштів на рахунку");
-//       return;
-//     }
-
-//     const type = amount > 0 ? Transaction.DEPOSIT : Transaction.WITHDRAW;
-//     const transaction = this.createTransaction(amount, type);
-//     this.transactions.push(transaction);
-//     this.balance += amount;
-//   },
-
-//   //   /*
-//   //    * Метод повертає поточний баланс
-//   //    */
-//   getBalance() {
-//     return this.balance;
-//   },
-
-//   //   /*
-//   //    * Метод шукає та повертає об'єкт транзакції по id
-//   //    */
-//   getTransactionDetails(id) {
-//     for (const transaction of this.transactions) {
-//       if (transaction.id === id) {
-//         return transaction;
-//       }
-//     }
-//   },
-
-//   //   /*
-//   //    * Метод повертає кількість коштів
-//   //    * певного типу транзакції з усієї історії транзакцій
-//   //    */
-//   getTransactionTotal(type) {
-//     let result = 0;
-//     for (const transaction of this.transactions) {
-//       if (transaction.type === type) {
-//         result += transaction.amount;
-//       }
-//     }
-//     return result;
-//   },
-// };
-
-// account.deposit(150);
-// account.deposit(550);
-// account.deposit(550);
-// account.deposit(550);
-// console.log(account.balance);
-// account.withdraw(-400);
-// account.withdraw(-350);
-// account.withdraw(-710);
-// console.log(account.balance);
-// console.log(
-//   'account.getTransactionTotal("deposit")',
-//   account.getTransactionTotal("deposit")
-// );
-// console.log(
-//   "account.getTransactionDetails(0.653129863770676)",
-//   account.getTransactionDetails(0.653129863770676)
-// );
-
-//2 variable
-// const account = {
-//   //   // Поточний баланс рахунку
-//   balance: 0,
-
-//   //   // Історія транзакцій
-//   transactions: [
-//     {
-//       amount: 150,
-//       type: "deposit",
-//       id: 0.7557249053527564,
-//     },
-//     {
-//       amount: 550,
-//       type: "deposit",
-//       id: 0.6208356631162801,
-//     },
-//     {
-//       amount: 550,
-//       type: "deposit",
-//       id: 0.37370657930144136,
-//     },
-//     {
-//       amount: 550,
-//       type: "deposit",
-//       id: 0.653129863770676,
-//     },
-//     {
-//       amount: -400,
-//       type: "withdraw",
-//       id: 0.9443966193853066,
-//     },
-//     {
-//       amount: -350,
-//       type: "withdraw",
-//       id: 0.09924677740566068,
-//     },
-//     {
-//       amount: -710,
-//       type: "withdraw",
-//       id: 0.3191312221336464,
-//     },
-//   ],
-
-//   //   /*
-//   //    * Метод створює та повертає об'єкт транзакції.
-//   //    * Приймає суму та тип транзакції.
-//   //    */
-//   createTransaction(amount, type) {
-//     const id = Math.random();
-//     const transaction = {
-//       amount,
-//       type,
-//       id,
-//     };
-//     return transaction;
-//   },
-
-//   //   /*
-//   //    * Метод, що відповідає за додавання суми до балансу.
-//   //    * Приймає суму транзакції.
-//   //    * Викликає createTransaction для створення об'єкта транзакції
-//   //    * після чого додає його до історії транзакцій
-//   //    */
-//   deposit(amount) {
-//     if (isNaN(amount)) {
-//       console.log("Введіть, будь ласка, число");
-//       return;
-//     }
-
-//     const normalizeAmount = Number(amount);
-//     const type = Transaction.DEPOSIT;
-
-//     const transaction = this.createTransaction(normalizeAmount, type);
-//     this.transactions.push(transaction);
-//     this.balance += normalizeAmount;
-//   },
-
-//   //   /*
-//   //    * Метод, що відповідає за зняття суми з балансу.
-//   //    * Приймає суму транзакції.
-//   //    * Викликає createTransaction для створення об'єкта транзакції
-//   //    * після чого додає його до історії транзакцій.
-//   //    *
-//   //    * Якщо amount більше ніж поточний баланс, виводь повідомлення
-//   //    * про те, що зняття такої суми не можливе, недостатньо коштів.
-//   //    */
-//   withdraw(amount) {
-//     if (isNaN(amount)) {
-//       console.log("Введіть, будь ласка, число");
-//       return;
-//     }
-//     const currentBalance = this.getBalance();
-
-//     if (currentBalance < Number(amount)) {
-//       console.log("У вас недостатньо коштів на рахунку");
-//       return;
-//     }
-
-//     const type = Transaction.WITHDRAW;
-//     const transaction = this.createTransaction(amount, type);
-//     this.transactions.push(transaction);
 //     this.balance -= amount;
+//     onSuccess(`Account balance: ${this.balance}`);
 //   },
-
-//   //   /*
-//   //    * Метод повертає поточний баланс
-//   //    */
-//   getBalance() {
-//     return this.balance;
-//   },
-
-//   //   /*
-//   //    * Метод шукає та повертає об'єкт транзакції по id
-//   //    */
-//   getTransactionDetails(id) {
-//     for (const transaction of this.transactions) {
-//       if (transaction.id === id) {
-//         return transaction;
-//       }
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`${amount} should not exceed ${TRANSACTION_LIMIT} credits`);
+//       return;
 //     }
-//   },
-
-//   //   /*
-//   //    * Метод повертає кількість коштів
-//   //    * певного типу транзакції з усієї історії транзакцій
-//   //    */
-//   getTransactionTotal(type) {
-//     let result = 0;
-//     for (const transaction of this.transactions) {
-//       if (transaction.type === type) {
-//         result += transaction.amount;
-//       }
+//     if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//       return;
 //     }
-//     return result;
+//     this.balance += amount;
+//     onSuccess(`Account balance: ${this.balance}`);
 //   },
 // };
 
-// account.deposit(150);
-// account.deposit(550);
-// // account.deposit(550);
-// // account.deposit(550);
-// console.log(account.balance);
-// account.withdraw(400);
-// // account.withdraw(350);
-// // account.withdraw(710);
-// console.log(account.balance);
+// function handleSuccess(message) {
+//   console.log(`✅ 🙂 Success! ${message}`);
+// }
+// function handleError(message) {
+//   console.log(`❌ Error! ${message}`);
+// }
+
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
+// Example 3 - Коллбек функції
+//
+// Напишіть функцію each(array, callback), яка першим параметром очікує масив, а другим - функцію, яка застосовується до кожного елемента масиву. Функція each повинна повернути новий масив, елементами якого будуть результати виклику коллбека.
+// function each(array, callback) {
+//   return array.map((element) => callback(element));
+// }
+
+// function double(element) {
+//   return element * 2;
+// }
+// each([1, 2, 3, 4, 5, 6], double);
 // console.log(
-//   'account.getTransactionTotal("deposit")',
-//   account.getTransactionTotal("deposit")
-// );
-// console.log(
-//   "account.getTransactionDetails(0.653129863770676)",
-//   account.getTransactionDetails(0.653129863770676)
+//   "each([1, 2, 3, 4, 5, 6], double);:",
+//   each([1, 2, 3, 4, 5, 6], double)
 // );
 
-// const friends = {};
-// const parents = {};
+// Рішення
+// function each(array, callback) {}
 
-// const user = {
-//   name: "Mango",
-//   age: 25,
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value * 2;
+//   }),
+// );
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value - 10;
+//   }),
+// );
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return Math.sqrt(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.ceil(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.floor(value);
+//   }),
+// );
+
+// Example 4 - Стрілочні функції
+// Виконайте рефакторинг коду за допомогою стрілочних функцій.
+
+// const createProduct = (partialProduct, callback) => {
+//   const product = { id: Date.now(), ...partialProduct };
+//   callback(product);
 // };
-// user[friends] = friends;
-// user[parents] = parents;
 
-// console.log(user);
+// const logProduct = (product) => {
+//   console.log(product);
+// };
 
-/// Example 7 - Колекція курсів (includes, indexOf, push і т. д.)
-// Напишіть функції для роботи з колекцією навчальних курсів courses:
+// const logTotalPrice = (product) => {
+//   console.log(product.price * product.quantity);
+// };
 
-// addCourse(name) - додає курс до кінця колекції
-// removeCourse(name) - видаляє курс із колекції
-// updateCourse(oldName, newName) - змінює ім'я на нове
+// createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: "🍋", price: 20, quantity: 5 }, logTotalPrice);
+//
+// Example 5 - Стрілочні функції
+// Виконайте рефакторинг коду за допомогою стрілочних функцій.
 
-// const courses = ["HTML", "CSS", "JavaScript", "React", "PostgreSQL"];
+// const TRANSACTION_LIMIT = 1000;
 
-// function addCourse(name) {
-//   courses.push(name);
-// }
-// addCourse("QA");
+// const account = {
+//   username: "Jacob",
+//   balance: 400,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount > this.balance) {
+//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+// };
 
-// function removeCourse(name) {
-//   const index = courses.indexOf(name);
-//   courses.splice(index, 1);
-// }
-// removeCourse("PostgreSQL");
+// const handleSuccess = (message) => {
+//   console.log(`✅ Success! ${message}`);
+// };
+// const handleError = (message) => {
+//   console.log(`❌ Error! ${message}`);
+// };
 
-// function updateCourse(oldName, newName) {
-//   const index = courses.indexOf(oldName);
-//   courses.splice(index, 1, newName);
-// }
-// updateCourse("React", "Node");
-// console.log(courses);
-// ## Example 8 - Пошук елемента
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
 
-// Напиши фунцію findSmallerNumber(numbers), яка  шукає найменше число у масиві. Код повинен працювати для
-// будь-якого масиву чисел. Використовуй цикл для розв'язання задачі.
+// Example 6 - Інлайн стрілочні функції
+// Виконайте рефакторинг коду за допомогою стрілочних функцій.
 
-// const numbers = [1, 17, 94, 11, 23, -2];
-
-// function findSmallerNumber(numbers) {
-//   let min = numbers[0];
-//   for (const number of numbers) {
-//     //через if else
-//     // if (number < min) {
-//     //   min = number;
-//     // }
-//     // через тернарний оператор
-//     min = number < min ? number : min;
+// const each = (array, callback) => {
+//   const newArr = [];
+//   for (const el of array) {
+//     newArr.push(callback(el));
 //   }
-//   console.log(min); // 1
-//   return min;
-// }
+//   return newArr;
+// };
 
-// findSmallerNumber(numbers);
+// console.log(each([64, 49, 36, 25, 16], (value) => value * 2));
+// console.log(each([64, 49, 36, 25, 16], (value) => value - 10));
+// console.log(each([64, 49, 36, 25, 16], (value) => Math.sqrt(value)));
+// console.log(each([1.5, 2.1, 16.4, 9.7, 11.3], (value) => Math.ceil(value)));
+// console.log(each([1.5, 2.1, 16.4, 9.7, 11.3], (value) => Math.floor(value)));
 
-// const numbers = [2, 17, 94, 1, 23, 37, 3, -9];
-// //console.log(min); // 1
-// function findSmallerNumber(numbers) {
-//   let min = numbers[0];
-//   for (const number of numbers) {
-//     //number < min ? min = number : null
-//     min = number < min ? number : min;
-//   }
-//   return min;
-// }
+const cars = [
+  {
+    make: "Honda",
+    model: "CR-V",
+    type: "suv",
+    amount: 14,
+    price: 24045,
+    onSale: true,
+  },
+  {
+    make: "Honda",
+    model: "Accord",
+    type: "sedan",
+    amount: 2,
+    price: 22455,
+    onSale: true,
+  },
+  {
+    make: "Mazda",
+    model: "Mazda 6",
+    type: "sedan",
+    amount: 8,
+    price: 24195,
+    onSale: false,
+  },
+  {
+    make: "Mazda",
+    model: "CX-9",
+    type: "suv",
+    amount: 7,
+    price: 31520,
+    onSale: true,
+  },
+  {
+    make: "Toyota",
+    model: "4Runner",
+    type: "suv",
+    amount: 19,
+    price: 34210,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Sequoia",
+    type: "suv",
+    amount: 16,
+    price: 45560,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Tacoma",
+    type: "truck",
+    amount: 4,
+    price: 24320,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "F-150",
+    type: "truck",
+    amount: 11,
+    price: 27110,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Fusion",
+    type: "sedan",
+    amount: 13,
+    price: 22120,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Explorer",
+    type: "suv",
+    amount: 6,
+    price: 31660,
+    onSale: false,
+  },
+];
 
-// console.log(findSmallerNumber(numbers));
+// Example 7 - Метод map
+// Нехай функція getModels повертає масив моделей (поле model) всіх автомобілів.
+
+// const getModels = (cars) => cars.map(({ model }) => model);
+
+// console.table(getModels(cars));
+// Example 8 - Метод map
+// Нехай функція makeCarsWithDiscount повертає новий масив об'єктів із змінним значенням властивості price залежно від переданої знижки.
+
+// const makeCarsWithDiscount = (cars, discount) => {
+//   return cars.map((element) => ({
+//     ...element,
+//     price: element.price - element.price * discount,
+//   }));
+// };
+
+// console.table(makeCarsWithDiscount(cars, 0.2));
+// console.table(makeCarsWithDiscount(cars, 0.4));
+// Example 9 - Метод filter
+// Нехай функція filterByPrice повертає масив автомобілів ціна яких менша ніж значення параметра threshold.
+
+// const filterByPrice = (cars, threshold) => {
+//   return cars.filter((element) => element.price < threshold);
+// };
+
+// console.table(filterByPrice(cars, 30000));
+// console.table(filterByPrice(cars, 25000));
+// Example 10 - Метод filter
+// Нехай функція getCarsWithDiscount повертає масив автомобілів властивість onSale яких true.
+
+// const getCarsWithDiscount = (cars) =>  cars.filter((element) => element.onSale);
+
+// console.table(getCarsWithDiscount(cars));
+// Example 11 - Метод filter
+// Нехай функція getCarsWithType повертає масив автомобілів тип яких збігається зі значенням параметра type.
+
+// const getCarsWithType = (cars, type) => {
+//   return cars.filter((element) => element.type === type);
+// };
+
+// console.table(getCarsWithType(cars, "suv"));
+// console.table(getCarsWithType(cars, "sedan"));
+// Example 12 - Метод find
+// const getCarByModel = (cars, model) => cars.find((el) => el.model === model);
+
+// console.log(getCarByModel(cars, "F-150"));
+// console.log(getCarByModel(cars, "CX-9"));
+
+// Example 13 - Метод reduce
+// Нехай функція getTotalAmount повертає загальну кількість автомобілів (значення властивостей amount).
+
+// const getTotalAmount = (cars) =>
+//   cars.reduce((acc, el) => (acc += el.amount), 0);
+
+// console.log(getTotalAmount(cars));
+// Example 14 - Ланцюжки методів
+// Нехай функція getModelsOnSale повертає масив моделей автомобілів, але тільки тих, які зараз на розпродажі.
+
+//1 var
+// const getModelsOnSale = (cars) => {
+//   return cars.filter((el) => el.onSale).map((el) => el.model);
+// };
+
+//2 var
+// const getModelsOnSale = (cars) =>
+//   cars.filter(({ onSale }) => onSale).map(({ model }) => model);
+
+//3 var
+// const getModelsOnSale = (cars) =>
+//   cars.reduce((acc, el) => {
+//     if (el.onSale) {
+//       acc.push(el.model);
+//     }
+//     return acc;
+//   }, []);
+// console.table(getModelsOnSale(cars));
