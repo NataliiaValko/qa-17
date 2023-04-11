@@ -1,15 +1,13 @@
 # qa-17
 
-lesson 5
+lesson 6
 JS
 
-1. Контекст виконання функції
-2. Правила визначення this
-3. Класи:
-   3.1 Оголошення
-   3.2 Конструктор класу
-   3.3 Методи класу
-   3.4 Приватні властивості (геттери і сеттери)
-   3.5 Статичні властивості
-   3.6 Наслідування класів (class Child extends Parent {})
-   3.7 Конструктор дочірнього класу (super())
+1. DOM-дерево
+2. Навігація по DOM
+3. Пошук елементів (querySelector, querySelectorAll)
+4. Властивості дом елементів: textContent, classList, style. Атрибути.
+5. Створення та видалення елементів (createElement, remove)
+6. Події. Метод addEventListener(), removeEventListener()
+7. Об'єкт події (target, currentTarget, preventDefault)
+8. Події submit, change, input, focus, blur
