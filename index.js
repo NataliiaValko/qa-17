@@ -92,17 +92,21 @@
 // до тих пір поки не дійде до першого елемента, потім зупинити процес.
 // const array = [1, 2, 3, 4, 5];
 
-//
+// //
 
 // function startTimer(array) {
 //   let index = -1;
 //   let isReverse = false;
 //   let intervalId = null;
-
 //   intervalId = setInterval(() => {
 //     if (index === array.length - 1) {
 //       isReverse = true;
 //     }
+//     // if (!isReverse) {
+//     //   index += 1;
+//     // } else {
+//     //   index -= 1;
+//     // }
 //     index = isReverse ? index - 1 : index + 1;
 //     if (!index && isReverse) {
 //       clearInterval(intervalId);
