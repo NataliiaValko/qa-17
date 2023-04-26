@@ -1,13 +1,12 @@
 # qa-17
 
-lesson 6
+lesson 8
 JS
 
-1. DOM-дерево
-2. Навігація по DOM
-3. Пошук елементів (querySelector, querySelectorAll)
-4. Властивості дом елементів: textContent, classList, style. Атрибути.
-5. Створення та видалення елементів (createElement, remove)
-6. Події. Метод addEventListener(), removeEventListener()
-7. Об'єкт події (target, currentTarget, preventDefault)
-8. Події submit, change, input, focus, blur
+1. Асинхронність
+2. Багатопотоковість
+3. Promise і його стани. Створення і обробка (then, catch, finally)
+4. Ланцюжки промісів.
+5. Промісифікація
+6. Promise.all(), Promise.race()
+7. Promise.resolve(), Promise.reject()
